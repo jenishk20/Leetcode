@@ -54,16 +54,12 @@ public:
                if(required[it.first]<it.second){
                    goto brk;
                }
-           }
-            
-           for(auto it:have)
-           {
-              // cout<<it.first<<" "<<it.second<<endl;
                sum+=(mappings[it.first]*it.second);
            }
-            // 
+            
+          
            result=max(result,sum);
-             brk:;
+           brk:;
         }
         return result;
         
