@@ -1,6 +1,6 @@
 class Solution {
 public:
-    bool check(int force,vector<int>position,int balls)
+    bool check(int force,vector<int>&position,int balls)
     {
         int n=position.size();
         long long can_place=0;
@@ -10,7 +10,6 @@ public:
             if(i==0)
             {
                 can_place++;
-                
             }
             else if((position[i]-position[put])>=force)
             {
