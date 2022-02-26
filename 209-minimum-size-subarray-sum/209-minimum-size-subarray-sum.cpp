@@ -12,7 +12,7 @@ public:
             sum+=nums[j];
             if(sum>=target)
             {
-                cout<<i<<" "<<j<<endl;
+                //cout<<i<<" "<<j<<endl;
                 while(sum-nums[i]>=target)
                 {
                     if(sum-nums[i]>=target)
