@@ -19,7 +19,28 @@ public:
                 i++;
             }
         }
-        sort(nums.begin()+low,nums.begin()+high+1);
+        i=low;
+        j=mid+1;
+        int k=0;
+        while(i<=mid and j<=high)
+        {
+            if(nums[i]<nums[j])
+            {
+                temp[k++]=nums[i++];
+            }
+            else
+            {
+                temp[k++]=nums[j++];
+            }
+        }
+        while(i<=mid)
+            temp[k++]=nums[i++];
+        while(j<=high)
+            temp[k++]=nums[j++];
+        
+        for(i=low;i<=high;i++)
+            nums[i]=temp[i-low];
+        //sort(nums.begin()+low,nums.begin()+high+1);
     }
     void mergeSort(vector<int>&nums,int low,int high,int &c)
     {
