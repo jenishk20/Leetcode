@@ -4,39 +4,62 @@ private:
     int dy[4]={0,1,0,-1};
 public:
     int minimumEffortPath(vector<vector<int>>& heights) {
+            
+        int low=0;
+        int high=1e6;
+        int ans=0;
+        while(low<=high)
+        {
+            int mid=(low+high)/2;
+            
+            if(check(heights,mid))
+            {
+                ans=mid;
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }
+        return ans;
         
+    }
+    
+    bool check(vector<vector<int>>&heights,int mid)
+    {
         int r=heights.size();
         int c=heights[0].size();
         int i,j;
-        
-        priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>>pq;
-        pq.push({0,0,0});
-        vector<vector<int>>distance(r,vector<int>(c,INT_MAX));
-        distance[0][0]=0;
-        
-        while(!pq.empty())
+  
+        vector<vector<int>>vis(r,vector<int>(c,0));
+        vis[0][0]=1;
+        queue<pair<int,int>>q;
+        q.push({0,0});
+        while(!q.empty())
         {
-            int x=pq.top()[0];
-            int y=pq.top()[1];
-            int have=pq.top()[2];
-            pq.pop();
+            int x=q.front().first;
+            int y=q.front().second;
+            q.pop();
+            if(x==r-1 and y==c-1)
+                return true;
             for(int k=0;k<4;k++)
             {
                 int nx=dx[k]+x;
                 int ny=dy[k]+y;
-                if(nx>=0 and ny>=0 and nx<r and ny<c)
+                if(nx>=0 and ny>=0 and nx<r and ny<c and !vis[nx][ny])
                 {
                     int newDistance=abs(heights[nx][ny]-heights[x][y]);
                     
-                    if(distance[nx][ny]>max(newDistance,have))
+                    if(newDistance<=mid)
                     {
-                        distance[nx][ny]=max(newDistance,have);
-                        pq.push({nx,ny,distance[nx][ny]});
+                        q.push({nx,ny});
+                        vis[nx][ny]=1;
                     }
                     
                 }
             }
         }
-        return distance[r-1][c-1];
+        return false;
     }
 };
