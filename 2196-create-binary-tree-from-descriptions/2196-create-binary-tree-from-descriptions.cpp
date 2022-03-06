@@ -13,10 +13,10 @@ class Solution {
 public:
     
     TreeNode* createBinaryTree(vector<vector<int>>& descriptions) {
-        map<int,TreeNode *>ma;
-        map<int,int>indegree;
+        unordered_map<int,TreeNode *>ma;
+        unordered_map<int,int>indegree;
         
-        for(auto i:descriptions)
+        for(auto &i:descriptions)
         {
             int parent=i[0];
             int child=i[1];
