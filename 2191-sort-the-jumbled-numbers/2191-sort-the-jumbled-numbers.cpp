@@ -16,7 +16,7 @@ public:
     vector<int> sortJumbled(vector<int>& mapping, vector<int>& nums) {
         
         vector<int>ans;
-        vector<pair<int,int>>temp;
+        multimap<int,int>temp;
         
         for(int i=0;i<=9;i++)
             ma[i]=mapping[i];
@@ -24,11 +24,11 @@ public:
         for(int i=0;i<nums.size();i++)
         {
             int res=change(nums[i]);
-            temp.push_back({res,i});
+            temp.insert(make_pair(res,i));
         }
-        sort(temp.begin(),temp.end(),[](pair<int,int>p1,pair<int,int>p2){
-           return p1.first<p2.first; 
-        });
+        // sort(temp.begin(),temp.end(),[](pair<int,int>p1,pair<int,int>p2){
+        //    return p1.first<p2.first; 
+        // });
         
         for(auto i:temp)
             ans.push_back(nums[i.second]);
