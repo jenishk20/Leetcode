@@ -22,12 +22,9 @@ public:
         
             hash[i]=1;
         }
-        while(1)
+        while(!tmp.empty() and k!=0)
         {
-            if(k==0)
-                break;
-            if(tmp.empty())
-                break;
+       
             auto x=tmp.front();
             if(x.first==userId or hash[x.first]){
                 ans.push_back(x.second);
