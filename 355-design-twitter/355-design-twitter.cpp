@@ -1,9 +1,9 @@
 class Twitter {
 private:
+   
+public:
     deque<pair<int,int>>dq,tmp;
     map<int,vector<int>>ma;
-public:
-  
     Twitter() {
         
     }
