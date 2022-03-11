@@ -1,7 +1,9 @@
 class Twitter {
-public:
+private:
     deque<pair<int,int>>dq,tmp;
     map<int,vector<int>>ma;
+public:
+  
     Twitter() {
         
     }
@@ -17,7 +19,7 @@ public:
         auto x=ma[userId];
         map<int,int>hash;
         for(auto i:x){
-         //   cout<<userId<<" "<<i<<endl;
+        
             hash[i]=1;
         }
         while(1)
@@ -34,7 +36,6 @@ public:
             tmp.pop_front();
         
         }
-       
         return ans;
     }
     
