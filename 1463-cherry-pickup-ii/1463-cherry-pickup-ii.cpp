@@ -1,31 +1,52 @@
 class Solution {
+       int dp[100][100][100];
 public:
-    int dp[80][80][80];
-    int ok(vector<vector<int>>& grid ,int c1 , int c2, int r){
-        int n=grid.size();
-        int m=grid[0].size();
-        if(r==n) return 0;
-        if(dp[c1][c2][r]!=-1) return dp[c1][c2][r];
+    int recur(int i,int j1,int j2,int r,int c,vector<vector<int>>&grid
+           )
+    {
+        if(j1<0 or j2<0 or j1>=c or j2>=c)
+            return -1e8;
         
-        int ans=0;
-        for(int i=-1;i<=1;i++){
-            for(int j=-1;j<=1;j++){
-                int C1=c1+i;
-                int C2=c2+j;
-                if(C1>=0 && C1<m && C2>=0 && C2<m){
-                    ans=max(ans,ok(grid,C1,C2,r+1));
-                }
+        if(i==r-1)
+        {
+            if(j1==j2)
+            {
+                return grid[i][j1];
+            }
+            else
+            {
+                return grid[i][j1]+grid[i][j2];
             }
         }
-        if(c1==c2) ans+=grid[r][c1];
-        else ans+=(grid[r][c1]+grid[r][c2]);
-        return dp[c1][c2][r]=ans;
+        if(dp[i][j1][j2]!=-1)
+            return dp[i][j1][j2];
+        int maxi=-1e8;
+        for(int dx=-1;dx<=1;dx++)
+        {
+            for(int dy=-1;dy<=1;dy++)
+            {
+                int value=0;
+                if(j1==j2)
+                    value+=grid[i][j1];
+                else
+                    value+=grid[i][j1]+grid[i][j2];
+                
+                value+=recur(i+1,dx+j1,dy+j2,r,c,grid);
+                maxi=max(maxi,value);
+            }
+            
+        }
+        return dp[i][j1][j2]=maxi;
     }
-    
     int cherryPickup(vector<vector<int>>& grid) {
-        memset(dp,-1,sizeof(dp));
-        int n=grid.size();
-        int m=grid[0].size();
-        return ok(grid,0,m-1,0);
+        
+        int r=grid.size();
+        int c=grid[0].size();
+        
+     
+        memset(dp,-1,sizeof dp);
+        
+        return recur(0,0,c-1,r,c,grid);
+        
     }
 };
