@@ -1,8 +1,7 @@
 class Solution {
-       int dp[100][100][100];
 public:
-    int recur(int i,int j1,int j2,int r,int c,vector<vector<int>>&grid
-           )
+    int recur(int i,int j1,int j2,int r,int c,vector<vector<int>>&grid,
+             vector<vector<vector<int>>>&dp)
     {
         if(j1<0 or j2<0 or j1>=c or j2>=c)
             return -1e8;
@@ -31,7 +30,7 @@ public:
                 else
                     value+=grid[i][j1]+grid[i][j2];
                 
-                value+=recur(i+1,dx+j1,dy+j2,r,c,grid);
+                value+=recur(i+1,dx+j1,dy+j2,r,c,grid,dp);
                 maxi=max(maxi,value);
             }
             
@@ -42,11 +41,9 @@ public:
         
         int r=grid.size();
         int c=grid[0].size();
+        vector<vector<vector<int>>>dp(r,vector<vector<int>>(c,vector<int>(c,-1)));
         
-     
-        memset(dp,-1,sizeof dp);
-        
-        return recur(0,0,c-1,r,c,grid);
+        return recur(0,0,c-1,r,c,grid,dp);
         
     }
 };
