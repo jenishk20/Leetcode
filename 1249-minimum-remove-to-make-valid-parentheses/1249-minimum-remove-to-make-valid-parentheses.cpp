@@ -1,62 +1,49 @@
 class Solution {
 public:
     string minRemoveToMakeValid(string s) {
-        stack<pair<char,int>>se;
-      
-        int n=s.size();
+        
         vector<int>idx;
+        int n=s.size();
         int i;
+        stack<pair<char,int>>st;
         for(i=0;i<n;i++)
         {
-            if(s[i]==')')
+            if(s[i]=='(')
             {
-                if(se.empty()){
-                   
+                st.push({s[i],i});
+            }
+            else if(s[i]==')')
+            {
+                if(st.empty())
+                {
                     idx.push_back(i);
-                    continue;
                 }
                 else
                 {
-                   
-                    se.pop();
-                    
+                    st.pop();
                 }
             }
-            else if(s[i]=='(')
-            {
-                
-                
-                se.push({s[i],i});
-            }
-           
         }
-        
-        while(!se.empty())
-        {
-            auto curr=se.top();
-            se.pop();
-            idx.push_back(curr.second);
-            
-        }
-        string fres="";
+        string res="";
         int k=0;
-      
-        sort(idx.begin(),idx.end());
-          for(auto i:idx)
-            cout<<i<<" ";
-        cout<<endl;
-        for(i=0;i<s.size();i++)
+        while(!st.empty())
         {
-            if(k<idx.size() and i==idx[k])
+            idx.push_back(st.top().second);
+            st.pop();
+        }
+        sort(idx.begin(),idx.end());
+       
+        for(i=0;i<n;i++)
+        {
+            if(k<idx.size() and idx[k]==i)
             {
                 k++;
                 continue;
             }
-         
-            fres+=s[i];
+            cout<<s[i]<<" ";
+            res+=s[i];
         }
-        
-        return fres;
+        return res;
         
     }
 };
