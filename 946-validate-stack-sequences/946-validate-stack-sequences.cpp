@@ -10,16 +10,15 @@ public:
         for(i=0;i<n;i++)
         {
             int toPop=popped[i];
-            // cout<<toPop<<" "<<ma[toPop]<<endl;
             if(ma[toPop])
             {
-                //cout<<se.top()<<" "<<toPop<<endl;
+                
                 if(se.top()==toPop)
                     se.pop();
                 else
                     return false;
                 
-                continue;
+               continue;
                     
             }
             while(j<n)
@@ -33,9 +32,6 @@ public:
                 se.push(pushed[j]);
                 j++;
             }
-           // cout<<j<<endl;
-            
-            
         }
         return true;
     }
