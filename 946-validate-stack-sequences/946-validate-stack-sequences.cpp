@@ -4,35 +4,16 @@ public:
         
         int  n=pushed.size();
         stack<int>se;
-        map<int,int>ma;
-        int i,j;
-        j=0;
+        int i,j=0;
         for(i=0;i<n;i++)
         {
-            int toPop=popped[i];
-            if(ma[toPop])
+            se.push(pushed[i]);
+            while(!se.empty() and se.top()==popped[j])
             {
-                
-                if(se.top()==toPop)
-                    se.pop();
-                else
-                    return false;
-                
-               continue;
-                    
-            }
-            while(j<n)
-            {
-                if(pushed[j]==toPop){
-                    j++;
-                    break;
-                }
-
-                ma[pushed[j]]=1;
-                se.push(pushed[j]);
+                se.pop();
                 j++;
             }
         }
-        return true;
+        return se.empty();
     }
 };
