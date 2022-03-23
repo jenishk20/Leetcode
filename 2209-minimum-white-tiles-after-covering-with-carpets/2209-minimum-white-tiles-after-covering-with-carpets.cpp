@@ -13,8 +13,9 @@ public:
         if(dp[idx][numCarpets]!=-1)
             return dp[idx][numCarpets];
         
-        return dp[idx][numCarpets]=min((floor[idx]=='1')+recur(floor,numCarpets,carpetLen,idx+1),
-                  recur(floor,numCarpets-1,carpetLen,idx+carpetLen));
+        int op1=(floor[idx]=='1')+recur(floor,numCarpets,carpetLen,idx+1);
+        int op2=recur(floor,numCarpets-1,carpetLen,idx+carpetLen);
+        return dp[idx][numCarpets]=min(op1,op2);
     }
     int minimumWhiteTiles(string floor, int numCarpets, int carpetLen) {
         
