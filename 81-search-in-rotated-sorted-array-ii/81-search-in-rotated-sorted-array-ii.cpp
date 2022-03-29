@@ -3,27 +3,42 @@ public:
     bool search(vector<int>& nums, int target) {
         
         int n=nums.size();
-        int left=0;
-        int right=n-1;
-        while(left<=right)
+        int low=0;
+        int high=n-1;
+        while(low<=high)
         {
-            if(nums[left]==target or nums[right]==target)
+            
+            
+            while(low<high and nums[low]==nums[low+1])
+                low++;
+            while(low<high and nums[high]==nums[high-1])
+                high--;
+            int mid=(low+high)/2;
+            
+            if(nums[mid]==target)
                 return true;
-            else if(nums[left]<target)
+            if(nums[mid]>=nums[low])
             {
-                while(left<right and nums[left+1]==nums[left] )
-                left++;
-                
-                left++;
-            }
-            else if(target<nums[right])
-            {
-                while(left<right and nums[right-1]==nums[right])
-                    right--;
-                right--;
+                if(target>=nums[low] and target<=nums[mid])
+                {
+                    high=mid-1;
+                }
+                else
+                {
+                    low=mid+1;
+                }
             }
             else
-                break;
+            {
+                if(target>=nums[mid] and target<=nums[high])
+                {
+                    low=mid+1;
+                }
+                else
+                {
+                    high=mid-1;
+                }
+            }
         }
         return false;
     }
