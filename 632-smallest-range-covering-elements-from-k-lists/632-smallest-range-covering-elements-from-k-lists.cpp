@@ -20,29 +20,32 @@ public:
         map<int,int>seen;
         int total=0;
         int req=n;
-        int st=0;
-        for(i=0;i<ve.size();i++)
+         i=0,j=0;
+        int sz=ve.size();
+        int mini=1e9;
+        while(i<sz)
         {
-            int element=ve[i].first;
-            int group=ve[i].second;
-            
-            seen[group]++;
-            if(seen[group]==1)
+            seen[ve[i].second]++;
+            if(seen[ve[i].second]==1)
             {
                 total++;
             }
             if(total==req)
             {
-                while(seen[ve[st].second]>1)
+                while(seen[ve[j].second]>1)
                 {
-                    seen[ve[st++].second]--;
+                    seen[ve[j++].second]--;
                 }
-                if(ans.empty() or ans[1]-ans[0]>ve[i].first-ve[st].first)
+                if(ve[i].first-ve[j].first<mini)
                 {
-                    ans=vector<int>{ve[st].first,ve[i].first};
+                    mini=ve[i].first-ve[j].first;
+                    ans=vector<int>{ve[i].first,ve[j].first};
                 }
             }
+            i++;
+            
         }
+
         return ans;
     }
 };
