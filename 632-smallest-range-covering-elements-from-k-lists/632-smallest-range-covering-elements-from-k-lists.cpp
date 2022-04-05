@@ -12,10 +12,7 @@ public:
                 ve.push_back({j,i});
             }
         }
-        sort(ve.begin(),ve.end());
-        // for(auto i:ve)
-        //     cout<<i.first<<" "<<i.second<<endl;
-        
+        sort(ve.begin(),ve.end());  
         vector<int>ans;
         map<int,int>seen;
         int total=0;
