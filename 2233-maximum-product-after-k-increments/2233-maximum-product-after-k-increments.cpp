@@ -14,8 +14,8 @@ public:
             curr++;
             pq.push(curr);
         }
-        int prod=1;
-        int mod=1e9+7;
+        long long prod=1;
+        long long mod=1e9+7;
         while(!pq.empty())
         {
             prod=(prod*1ll*pq.top())%mod;
