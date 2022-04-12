@@ -11,7 +11,7 @@ public:
             int ny=c+dy[i];
             if(nx>=0 and ny>=0 and nx<board.size() and ny<board[0].size())
             {
-                if(abs(board[nx][ny])==1)
+                if(abs(board[nx][ny])==1 or board[nx][ny]==3)
                     neigh++;
             }
         }
@@ -34,7 +34,7 @@ public:
                 }
                 else if(board[i][j]==1 and (nbgh<2 or nbgh>3))
                 {
-                    board[i][j]=-1;
+                    board[i][j]=3;
                 }
                     
             }
@@ -43,7 +43,10 @@ public:
         {
             for(j=0;j<m;j++)
             {
-               board[i][j]=board[i][j]>0?1:0;
+               if(board[i][j]==2)
+                   board[i][j]=1;
+                else if(board[i][j]==3)
+                    board[i][j]=0;
             }
         }
     }
