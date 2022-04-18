@@ -11,26 +11,21 @@
  */
 class Solution {
 public:
-    void recur(TreeNode *root,vector<int>&inorder)
+    void recur(TreeNode *root,TreeNode *&dummy)
     {
         if(!root)
             return;
-        recur(root->left,inorder);
-        inorder.push_back(root->val);
-        recur(root->right,inorder);
+        recur(root->left,dummy);
+        dummy->right=new TreeNode(root->val);
+        dummy=dummy->right;
+        recur(root->right,dummy);
             
     }
     TreeNode* increasingBST(TreeNode* root) {
-        vector<int>inorder;
-        recur(root,inorder);
+        TreeNode *dummy=new TreeNode(-1);
+        TreeNode *tt=dummy;
+        recur(root,dummy);
         
-        TreeNode *nr=new TreeNode();
-        TreeNode *tt=nr;
-        for(auto i:inorder)
-        {
-            nr->right=new TreeNode(i);
-            nr=nr->right;
-        }
         return tt->right;
     }
 };
