@@ -1,25 +1,36 @@
 class Solution {
 public:
     vector<int> fullBloomFlowers(vector<vector<int>>& flowers, vector<int>& persons) {
+        map<int,int>ma;
         
-        vector<int>st,en;
         for(auto i:flowers)
         {
-            st.push_back(i[0]);
-            en.push_back(i[1]);
+            ma[i[0]]++;
+            ma[i[1]+1]--;
         }
-        sort(st.begin(),st.end());
-        sort(en.begin(),en.end());
-       
-        vector<int>ans;
-        for(auto i:persons)
+        
+        int sum=0;
+        for(auto &i:ma)
         {
-            auto it=upper_bound(st.begin(),st.end(),i)-st.begin();
-            auto it2=lower_bound(en.begin(),en.end(),i)-en.begin();
-           // cout<<it<<" "<<it2<<endl;
-            ans.push_back(it-it2);
+            sum+=i.second;
+            i.second=sum;
         }
+       
+        // for(auto i:ma)
+        // {
+        //     cout<<i.first<<" "<<i.second<<endl;
+        // }
+        vector<int>ans(persons.size(),0);
+        for(int i=0;i<persons.size();i++)
+        {
+            auto it=ma.upper_bound(persons[i]);
+            if(it!=ma.begin())
+            {
+                it--;
+                ans[i]=it->second;
+            }
+        }
+        
         return ans;
-            
     }
 };
