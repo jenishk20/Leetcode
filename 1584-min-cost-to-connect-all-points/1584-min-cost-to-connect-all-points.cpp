@@ -21,9 +21,23 @@ public:
             return u;
         return parent[u]=findPar(parent[u],parent);
     }
-    void merge(int pu,int pv,vector<int>&parent)
+    void merge(int pu,int pv,vector<int>&parent,vector<int>&rank)
     {
-        parent[pu]=pv;
+        if(rank[pu]<rank[pv])
+        {
+            parent[pu]=pv;
+          
+        }
+        else if(rank[pu]>rank[pv])
+        {
+             parent[pv]=pu;
+        }
+        else
+        {
+            rank[pu]++;
+            parent[pv]=pu;
+        }
+        
     }
     int minCostConnectPoints(vector<vector<int>>& points) {
         
@@ -48,12 +62,8 @@ public:
         
         
         sort(ve.begin(),ve.end(),comp);
-        // for(auto i:ve)
-        // {
-        //     cout<<i.u<<" "<<i.v<<" "<<i.wt<<endl;
-        // }
         int cost=0;
-        vector<int>parent(n+1);
+        vector<int>parent(n+1),rank(n+1,0);
         for(i=0;i<=n;i++)
             parent[i]=i;
         
@@ -68,7 +78,7 @@ public:
             int pv=findPar(v,parent);
             if(pu!=pv)
             {
-                merge(pu,pv,parent);
+                merge(pu,pv,parent,rank);
                 cost+=wt;
             }
             
