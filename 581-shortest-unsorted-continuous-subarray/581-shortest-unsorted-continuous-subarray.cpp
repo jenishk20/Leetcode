@@ -24,6 +24,7 @@ public:
             {
                 maxTillNow=nums[i];
             }
+           // cout<<st<<" "<<en<<endl;
         }
   
      
