@@ -5,9 +5,18 @@ public:
         
         if(n<=0)
             return false;
-        int k=n&(n-1);
-        int p=n&(0xaaaaaaaa);
-        
-        return k==0 and p==0;
+        int cnt=0;
+        bool flag=false;
+        for(int i=0;i<=31;i++)
+        {
+            if(n&(1<<i))
+            {
+                if(i%2==0)
+                    flag=1;
+                cnt++;
+            }
+            
+        }
+        return flag and cnt==1;
     }
 };
