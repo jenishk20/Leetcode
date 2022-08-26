@@ -4,18 +4,15 @@ public:
         
         string s=to_string(n);
         sort(s.begin(),s.end());
-        do
+        
+        for(int i=0;i<30;i++)
         {
-            if(s[0]!='0'){
-            int val=stoi(s);
-                cout<<val<<endl;
-            if((val&(val-1))==0)
-            {
+            int val=(1<<i);
+            string temp=to_string(val);
+            sort(temp.begin(),temp.end());
+            if(temp==s)
                 return 1;
-            }
-            }
-            
-        }while(next_permutation(s.begin(),s.end()));
+        }
         return 0;
     }
     
