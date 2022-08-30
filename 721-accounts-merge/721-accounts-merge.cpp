@@ -33,20 +33,13 @@ public:
         }
      
         
-        for(auto i:graph)
-        {
-            cout<<i.first<<" ";
-            for(auto it:i.second)
-                cout<<it<<" ";
-            cout<<endl;
-        }
-        // vector<string>vis(n+1,0);
+        
         for(auto i:accounts)
         {
-            cout<<i[0]<<" "<<i[1]<<endl;
+            
             if(!vis[i[1]])
             {
-                cout<<i[1]<<endl;
+               
                 vector<string>temp;
                 dfs(i[1],temp);
                 sort(temp.begin(),temp.end());
