@@ -38,18 +38,12 @@ public:
         }
         for(auto i:ma)
         {
-           
-           cout<<i.first<<" ";
+         
             vector<int>col;
-            for(auto i:i.second)
+            for(auto it:i.second)
             {
-                col.insert(col.end(),i.second.begin(),i.second.end());
-                cout<<i.first<<" ";
-                for(auto it:i.second)
-                {
-                    cout<<it<<" ";
-                }
-                cout<<endl;
+                col.insert(col.end(),it.second.begin(),it.second.end());
+                
             }
             ans.push_back(col);
 
