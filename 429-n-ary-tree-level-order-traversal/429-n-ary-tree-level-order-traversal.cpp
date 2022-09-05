@@ -25,9 +25,9 @@ public:
         vector<vector<int>>ans;
         if(!root)
             return ans;
+        
         queue<Node *>q;
         q.push(root);
-        
         while(!q.empty())
         {
             int sz=q.size();
@@ -36,7 +36,9 @@ public:
             {
                 Node *curr=q.front();
                 q.pop();
+                
                 temp.push_back(curr->val);
+                
                 for(auto it:curr->children)
                 {
                     q.push(it);
