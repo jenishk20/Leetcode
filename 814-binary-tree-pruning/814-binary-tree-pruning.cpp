@@ -13,39 +13,26 @@ class Solution {
 public:
     int recur(TreeNode *root)
     {
-        if(!root)
+        if(root==NULL)
             return 0;
-        if(!root->left and !root->right)
+        if(root->left==NULL and root->right==NULL)
         {
             if(root->val==1)
                 return 1;
-            return 0;
+            else
+                return 0;
         }
-        int left=recur(root->left);
-        int right=recur(root->right);
+        int leftCount=recur(root->left);
+        int rightCount=recur(root->right);
         
-        if(left==0)
+        if(leftCount==0)
             root->left=NULL;
-        if(right==0)
+        if(rightCount==0)
             root->right=NULL;
         
-        return left+right+(root->val==1);
-        
-       
-        
-
-           
-    }
-    bool contains(TreeNode *root)
-    {
-        if(!root)
-            return false;
-        if(root->val==1)
-            return true;
-        return contains(root->left) or contains(root->right);
+        return leftCount+rightCount+(root->val==1);
     }
     TreeNode* pruneTree(TreeNode* root) {
-        return (recur(root))==0?NULL:root;
-        // return root;
+        return (recur(root)==0)?NULL:root;
     }
 };
