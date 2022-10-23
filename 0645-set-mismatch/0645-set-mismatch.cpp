@@ -5,7 +5,7 @@ public:
         int n=nums.size();
         vector<int>ans;
         vector<int>vis(n+1,0);
-        sort(nums.begin(),nums.end());
+      
         int missing=-1,doubled=-1;
         bool be=false;
        
