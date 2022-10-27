@@ -10,28 +10,27 @@ class Solution {
   public:
     vector<int> leafNodes(int arr[],int n) {
         // code here
-        stack<int>se;
         vector<int>ans;
-        int i=0,j=1;
-        while(j<n)
+        stack<int>se;
+        se.push(arr[0]);
+        for(int i=1;i<n;i++)
         {
-            if(arr[i]>arr[j])
-            se.push(arr[i]);
-            
+            if(!se.empty() and arr[i]<se.top()) se.push(arr[i]);
             else
             {
-                bool found=false;
-                while(!se.empty() and arr[j]>se.top())
+                int temp=se.top();
+                int rem=0;
+                while(!se.empty() and se.top()<arr[i])
                 {
-                    found=true;
                     se.pop();
+                    rem++;
+                    
                 }
-                if(found)
-                ans.push_back(arr[i]);
+                se.push(arr[i]);
+                if(rem>=2)
+                ans.push_back(temp);
             }
             
-            i++;
-            j++;
         }
         ans.push_back(arr[n-1]);
         return ans;
