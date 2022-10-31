@@ -14,8 +14,6 @@ class Solution {
         {
             for(j=i+1;j<N;j++)
             {
-                
-                // cout<<A[i]<<" "<<A[j]<<endl;
                 int sum=A[i]+A[j];
                 if(ma.find(sum)!=ma.end() and ma[sum][0]!=i and ma[sum][1]!=j
                 and ma[sum][0]!=j and ma[sum][1]!=i)
