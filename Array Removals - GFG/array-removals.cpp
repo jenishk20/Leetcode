@@ -31,15 +31,15 @@ class Solution{
         sort(arr.begin(),arr.end());
         
         
-        int i=0,j=0;
-        int ans=0;
-        while(j<n)
-        {
-            if(arr[j]-arr[i]<=k) j++;
-            else if(i<j) i++;
-            ans=max(ans,j-i);
-        }
-        return n-ans;
+        // int i=0,j=0;
+        // int ans=0;
+        // while(j<n)
+        // {
+        //     if(arr[j]-arr[i]<=k) j++;
+        //     else if(i<j) i++;
+        //     ans=max(ans,j-i);
+        // }
+        // return n-ans;
         return recur(0,n-1,arr,k);
     }
 };
