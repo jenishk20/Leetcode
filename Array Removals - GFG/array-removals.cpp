@@ -20,7 +20,8 @@ class Solution{
         int op1=recur(i+1,j,arr,k);
         int op2=recur(i,j-1,arr,k);
         
-        return dp[i][j]=min(op1,op2)+1;
+        //return min(op1,op2)+1;
+         return dp[i][j]=min(op1,op2)+1;
         
     }
     int removals(vector<int>& arr, int k){
