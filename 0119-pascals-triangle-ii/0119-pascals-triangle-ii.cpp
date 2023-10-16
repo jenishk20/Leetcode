@@ -12,12 +12,6 @@ public:
                 ans[i][j] = ans[i-1][j] + ans[i-1][j-1];
             }
         }
-        for(auto i:ans){
-    
-            for(auto it:i)
-                cout<<it<<" ";
-            cout<<endl;
-        }
         return ans[rowIndex];
     }
 };
